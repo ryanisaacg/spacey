@@ -2,6 +2,11 @@
 #include <fstream>
 #include <string>
 
+/*
+Convert a line of text from spaces or a mix to tab-only
+Useful for the guarantee that a line will be indented with tabs
+Pure function
+*/
 std::string line_to_tabs(const std::string input, const unsigned int spaces_per) {
 	std::string new_str = "";
 	unsigned int running_spaces = 0;
@@ -30,9 +35,9 @@ std::string line_to_tabs(const std::string input, const unsigned int spaces_per)
 			break;
 		}
 	}
-	if(running_spaces > 0)
+	if(running_spaces > 0) //If there are three trailing spaces on an indent, there should be a tab
 		new_str += '\t';
-	new_str += input.substr(i);
+	new_str += input.substr(i); //Put the actual line contents into the string
 	return new_str;
 }
 
