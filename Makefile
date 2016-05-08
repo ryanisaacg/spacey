@@ -3,7 +3,7 @@ OBJ_FILES := $(addprefix obj/,$(notdir $(C_FILES:.cpp=.o)))
 LD_FLAGS :=
 CC_FLAGS := -Wall -Wfatal-errors -Werror -pedantic -std=c++11 -Wextra -Wdouble-promotion -Wunused-parameter -Wunused -Wuninitialized -DDO_TESTS
 run: build
-	@bin/./out example.fwum
+	@bin/./out
 
 build: obj/ bin/ bin/out
 
