@@ -24,8 +24,7 @@ int main(int argc, char *argv[]) {
 	int spaces_per = std::stoi(argv[2]);
 	for(int i = 3; i < argc; i++) {
 		const std::string converted = apply_to_file(function, argv[i], spaces_per);
-		std::cout << converted;
-		std::ofstream output (argv[1]);
+		std::ofstream output (argv[i]);
 		output << converted;
 		output.close();
 	}
