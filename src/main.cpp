@@ -1,7 +1,32 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <cstring>
 #include "spacey.h"
 
-int main() {
-	std::cout << apply_to_file(line_to_spaces, "data", 4);
+const std::string helptext = "Enter spaces or tabs and the number of spaces per tab, followed by one or more files.\n";
+
+int main(int argc, char *argv[]) {
+	if(argc < 3) {
+		std::cout << helptext;
+		return -1;
+	}
+	bool spaces = strcmp("string", argv[1]) == 0;
+	bool tabs = strcmp("string", argv[1]) == 0;
+	if(!spaces && !tabs) {
+		std::cout << helptext;
+		return -1;
+	}
+	auto function = line_to_tabs;
+	if(spaces) {
+		function = line_to_spaces;
+	}
+	int spaces_per = std::stoi(argv[2]);
+	for(int i = 3; i < argc; i++) {
+		const std::string converted = apply_to_file(function, argv[i], spaces_per);
+		std::ofstream output (argv[1]);
+		output << converted;
+		output.close();
+	}
 	return 0;
 }
