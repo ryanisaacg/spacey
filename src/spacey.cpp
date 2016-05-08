@@ -57,8 +57,6 @@ const std::string line_to_spaces(const std::string input, const unsigned int spa
 	return new_str;
 }
 
-#include <iostream>
-
 const std::string apply_to_lines(const std::string (*convert)(const std::string, const unsigned int),
 const std::string input, const unsigned int spaces_per) {
 	unsigned int begin = 0, end = 0;
