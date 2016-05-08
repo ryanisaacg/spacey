@@ -1,4 +1,5 @@
 #include "spacey.h"
+#include <fstream>
 
 /*
 Convert a line of text from spaces or a mix to tab-only
@@ -70,4 +71,20 @@ const std::string input, const unsigned int spaces_per) {
 	}
 	converted += convert(input.substr(begin, end), spaces_per);
 	return converted;
+}
+
+const std::string apply_to_file(const std::string (*convert)(const std::string, const unsigned int),
+const std::string filename, const unsigned int spaces_per) {
+	std::string line;
+	std::string value = "";
+	std::ifstream file(filename);
+	if(file.is_open()) {
+		while(std::getline(file, line)) {
+			value += convert(line, spaces_per);
+		}
+		file.close();
+	} else {
+		return "File not found.";
+	}
+	return value;
 }
