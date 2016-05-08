@@ -56,3 +56,20 @@ const std::string line_to_spaces(const std::string input, const unsigned int spa
 	new_str += tabs_only.substr(i);
 	return new_str;
 }
+
+#include <iostream>
+
+const std::string apply_to_lines(const std::string (*convert)(const std::string, const unsigned int),
+const std::string input, const unsigned int spaces_per) {
+	unsigned int begin = 0, end = 0;
+	std::string converted = "";
+	for(unsigned int i = 0; i < input.length(); i++) {
+		end++;
+		if(input.at(i) == '\n') {
+			converted += convert(input.substr(begin, end), spaces_per);
+			begin = end;
+		}
+	}
+	converted += convert(input.substr(begin, end), spaces_per);
+	return converted;
+}

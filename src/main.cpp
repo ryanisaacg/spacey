@@ -2,6 +2,6 @@
 #include "spacey.h"
 
 int main() {
-	std::cout << line_to_spaces(line_to_tabs("\t\ta", 4), 4);
+	std::cout << apply_to_lines(line_to_spaces, "    a\n  b\n      c\n         d", 4);
 	return 0;
 }

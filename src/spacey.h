@@ -11,4 +11,6 @@ const std::string line_to_tabs(const std::string input, const unsigned int space
 
 const std::string line_to_spaces(const std::string input, const unsigned int spaces_per);
 
+const std::string apply_to_lines(const std::string (*convert)(const std::string, const unsigned int),
+const std::string input, const unsigned int spaces_per);
 #endif
