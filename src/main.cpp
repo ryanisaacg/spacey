@@ -9,13 +9,13 @@ const std::string helptext = "Enter spaces or tabs and the number of spaces per 
 int main(int argc, char *argv[]) {
 	if(argc < 3) {
 		std::cout << helptext;
-		return -1;
+		return 1;
 	}
-	bool spaces = strcmp("string", argv[1]) == 0;
-	bool tabs = strcmp("string", argv[1]) == 0;
+	bool spaces = strcmp("spaces", argv[1]) == 0;
+	bool tabs = strcmp("tabs", argv[1]) == 0;
 	if(!spaces && !tabs) {
 		std::cout << helptext;
-		return -1;
+		return 2;
 	}
 	auto function = line_to_tabs;
 	if(spaces) {
@@ -24,6 +24,7 @@ int main(int argc, char *argv[]) {
 	int spaces_per = std::stoi(argv[2]);
 	for(int i = 3; i < argc; i++) {
 		const std::string converted = apply_to_file(function, argv[i], spaces_per);
+		std::cout << converted;
 		std::ofstream output (argv[1]);
 		output << converted;
 		output.close();
