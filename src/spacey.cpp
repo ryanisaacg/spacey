@@ -73,6 +73,7 @@ const std::string input, const unsigned int spaces_per) {
 	return converted;
 }
 
+//TODO:
 const std::string apply_to_file(const std::string (*convert)(const std::string, const unsigned int),
 const std::string filename, const unsigned int spaces_per) {
 	std::string line;
@@ -80,7 +81,7 @@ const std::string filename, const unsigned int spaces_per) {
 	std::ifstream file(filename);
 	if(file.is_open()) {
 		while(std::getline(file, line)) {
-			value += convert(line, spaces_per);
+			value += convert(line, spaces_per) + "\n";
 		}
 		file.close();
 	} else {
